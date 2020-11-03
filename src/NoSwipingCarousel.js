@@ -3,14 +3,14 @@ class NoSwipingCarousel {
     this.el = el; // 目标 css 样式
     this.slidesPerView = options.slidesPerView || 3; // 并列显示几个内容
     this.initialSlide = Math.floor((this.slidesPerView - 1) / 2); // swiper 初始 index
-    this.spaceBetween = options.spaceBetween || 30; //
-    this.activeStyle = options.activeStyle || "";
-    this.prevBtn = document.querySelector(options.navigation.prevEl);
-    this.nextBtn = document.querySelector(options.navigation.nextEl);
-    this.slides = document.querySelectorAll(`${this.el} .swiper-slide`);
-    this.length = this.slides.length;
-    this.currentIndex = 0;
-    this.swiper = null;
+    this.spaceBetween = options.spaceBetween || 30; // slide 间距
+    this.activeStyle = options.activeStyle || ""; // 处于选中状态的样式
+    this.prevBtn = document.querySelector(options.navigation.prevEl); // 上一个按钮
+    this.nextBtn = document.querySelector(options.navigation.nextEl); // 下一个按钮
+    this.slides = document.querySelectorAll(`${this.el} .swiper-slide`); // 所有 slides
+    this.length = this.slides.length; // slide 的个数
+    this.currentIndex = 0; // 当前处于选中状态的 slide index
+    this.swiper = null; // swiper 实例
     this.init();
   }
   // 初始
