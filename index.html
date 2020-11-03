@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Center Swiper</title>
+  <link rel="stylesheet" href="./node_modules/swiper/swiper-bundle.min.css">
+  <script src="./node_modules/swiper/swiper-bundle.min.js"></script>
+  <script src="./dist/NoSwipingCarousel.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .swiper-container {
+      width: 1000px;
+      height: 200px;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      line-height: 200px;
+      background-color: #999;
+      color: #ffffff;
+    }
+
+    .swiper-slide.active {
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">1</div>
+      <div class="swiper-slide">2</div>
+      <div class="swiper-slide">3</div>
+      <div class="swiper-slide">4</div>
+      <div class="swiper-slide">5</div>
+      <div class="swiper-slide">6</div>
+      <div class="swiper-slide">7</div>
+      <div class="swiper-slide">8</div>
+      <div class="swiper-slide">9</div>
+      <div class="swiper-slide">10</div>
+    </div>
+  </div>
+  <button class="prev">&lt;</button>
+  <button class="next">&gt;</button>
+  <script>
+    new NoSwipingCarousel(".swiper-container", {
+      slidesPerView: 5, // 并列显示 slide 数量
+      spaceBetween: 30, // 间距
+      navigation: {
+        nextEl: ".next", // 下一个按钮
+        prevEl: ".prev", // 上一个按钮
+      },
+      activeStyle: "active" // 选中后 slide 样式
+    });
+  </script>
+</body>
+
+</html>
