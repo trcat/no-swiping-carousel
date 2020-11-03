@@ -42,6 +42,8 @@
          activeStyle: "active" // 选中后 slide 样式
        });
    ```
+   
+   node 安装方式请看[这个地方](https://github.com/trcat/no-swiping-carousel/packages/485818)
 
    ## demo
 
