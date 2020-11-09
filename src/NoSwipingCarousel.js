@@ -9,6 +9,7 @@ class NoSwipingCarousel {
     this.nextBtn = document.querySelector(options.navigation.nextEl); // 下一个按钮
     this.slides = document.querySelectorAll(`${this.el} .swiper-slide`); // 所有 slides
     this.length = this.slides.length; // slide 的个数
+    this.handleSelectChange = options.handleSelectChange || function() {} // 监听 slide 切换事件
     this.currentIndex = 0; // 当前处于选中状态的 slide index
     this.swiper = null; // swiper 实例
     this.init();
@@ -32,6 +33,7 @@ class NoSwipingCarousel {
           // swiper 初始化后，让首个 slide 处于 active 状态
           self.setActiveState(self.currentIndex);
         },
+        slideChangeTransitionEnd: this.slideChangeTransitionEnd
       },
     });
   }
@@ -93,6 +95,10 @@ class NoSwipingCarousel {
   setActiveState(index) {
     this.slides.forEach((i) => i.classList.remove(this.activeStyle));
     this.slides[index].classList.add(this.activeStyle);
+    this.handleSelectChange({
+      index,
+      element: this.slides[index]
+    })
   }
 }
 

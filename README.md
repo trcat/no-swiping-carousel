@@ -39,7 +39,15 @@
            nextEl: ".next", // 下一个按钮
            prevEl: ".prev", // 上一个按钮
          },
-         activeStyle: "active" // 选中后 slide 样式
+         activeStyle: "active", // 选中后 slide 样式
+         handleSelectChange: function(data) {
+         alert(data.index);
+           /**
+            * data object 包含如下内容：
+            * index：当前选中 slide 索引值
+            * element：当前选中的 slide 的 HMTLElement 值
+           */
+         }
        });
    ```
 
