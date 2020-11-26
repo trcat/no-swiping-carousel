@@ -41,7 +41,7 @@
            prevEl: ".prev", // 上一个按钮
          },
          activeStyle: "active", // 选中后 slide 样式
-        swiperConfig: {}, // swiper 的 config, 支持 swiper 所有设定值
+         swiperConfig: {}, // swiper 的 config, 如果已有的属性不能满足你的需求，可以设置该属性，直接设定 swiper。支持 swiper 所有设定值
          handleSelectChange: function(data) {
          alert(data.index);
            /**
