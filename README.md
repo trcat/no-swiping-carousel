@@ -35,6 +35,7 @@
        new NoSwipingCarousel(".swiper-container", {
          slidesPerView: 5, // 并列显示 slide 数量
          spaceBetween: 30, // 间距
+         loop: true, // 是否循环
          navigation: {
            nextEl: ".next", // 下一个按钮
            prevEl: ".prev", // 上一个按钮
