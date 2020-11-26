@@ -5,6 +5,7 @@ class NoSwipingCarousel {
     this.initialSlide = Math.floor((this.slidesPerView - 1) / 2); // swiper 初始 index
     this.spaceBetween = options.spaceBetween || 30; // slide 间距
     this.activeStyle = options.activeStyle || ""; // 处于选中状态的样式
+    this.swiperConfig = options.swiperConfig || {}; // 其他 swiper 设定
     this.loop = options.loop || false; // 是否循环
     this.prevBtn = document.querySelector(options.navigation.prevEl); // 上一个按钮
     this.nextBtn = document.querySelector(options.navigation.nextEl); // 下一个按钮
@@ -23,7 +24,9 @@ class NoSwipingCarousel {
   // 初始化 swiper
   initSwiper() {
     const self = this;
+    const on = this.swiperConfig.on || {};
     this.swiper = new Swiper(this.el, {
+      ...this.swiperConfig,
       slidesPerView: this.slidesPerView,
       spaceBetween: 30,
       centeredSlides: this.length >= this.slidesPerView,
@@ -32,11 +35,12 @@ class NoSwipingCarousel {
       observer: true,//修改swiper自己或子元素时，自动初始化swiper
       observeParents: true,//修改swiper的父元素时，自动初始化swiper
       on: {
+        ...on,
         init(e) {
           // swiper 初始化后，让首个 slide 处于 active 状态
           self.setActiveState(self.currentIndex);
+          on && on.init && on.init()
         },
-        slideChangeTransitionEnd: this.slideChangeTransitionEnd,
       },
     });
   }
