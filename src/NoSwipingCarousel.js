@@ -5,11 +5,12 @@ class NoSwipingCarousel {
     this.initialSlide = Math.floor((this.slidesPerView - 1) / 2); // swiper 初始 index
     this.spaceBetween = options.spaceBetween || 30; // slide 间距
     this.activeStyle = options.activeStyle || ""; // 处于选中状态的样式
+    this.loop = options.loop || false; // 是否循环
     this.prevBtn = document.querySelector(options.navigation.prevEl); // 上一个按钮
     this.nextBtn = document.querySelector(options.navigation.nextEl); // 下一个按钮
     this.slides = document.querySelectorAll(`${this.el} .swiper-slide`); // 所有 slides
     this.length = this.slides.length; // slide 的个数
-    this.handleSelectChange = options.handleSelectChange || function() {} // 监听 slide 切换事件
+    this.handleSelectChange = options.handleSelectChange || function () {}; // 监听 slide 切换事件
     this.currentIndex = 0; // 当前处于选中状态的 slide index
     this.swiper = null; // swiper 实例
     this.init();
@@ -33,7 +34,7 @@ class NoSwipingCarousel {
           // swiper 初始化后，让首个 slide 处于 active 状态
           self.setActiveState(self.currentIndex);
         },
-        slideChangeTransitionEnd: this.slideChangeTransitionEnd
+        slideChangeTransitionEnd: this.slideChangeTransitionEnd,
       },
     });
   }
@@ -51,6 +52,10 @@ class NoSwipingCarousel {
           ) {
             this.swiper.slidePrev();
           }
+        } else if (this.currentIndex === 0 && this.loop) {
+          this.currentIndex = this.length - 1;
+          this.setActiveState(this.currentIndex);
+          this.swiper.slideTo(this.length - 1 - this.initialSlide);
         }
       });
     // 下一个按钮点击事件
@@ -65,6 +70,10 @@ class NoSwipingCarousel {
           ) {
             this.swiper.slideNext();
           }
+        } else if (this.currentIndex === this.length - 1 && this.loop) {
+          this.currentIndex = 0;
+          this.setActiveState(this.currentIndex);
+          this.swiper.slideTo(this.initialSlide);
         }
       });
     // slide 点击事件
@@ -97,8 +106,8 @@ class NoSwipingCarousel {
     this.slides[index].classList.add(this.activeStyle);
     this.handleSelectChange({
       index,
-      element: this.slides[index]
-    })
+      element: this.slides[index],
+    });
   }
 }
 
